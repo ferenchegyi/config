@@ -1,7 +1,7 @@
 # Alacritty Configuration - Optimized for CaskaydiaMono NFM
 
 [window]
-opacity = 0.8
+opacity = 1
 dimensions = { columns = 150, lines = 40}
 
 [font]

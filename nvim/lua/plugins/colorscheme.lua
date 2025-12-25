@@ -11,14 +11,14 @@ return {
                 keywordStyle = { italic = false },
                 statementStyle = { bold = true },
                 typeStyle = {},
-                transparent = true,    -- do not set background color
+                transparent = false,    -- do not set background color
                 dimInactive = false,   -- dim inactive window `:h hl-NormalNC`
                 terminalColors = true, -- define vim.g.terminal_color_{0,17}
                 colors = {             -- add/modify theme and palette colors
                     palette = {},
                     theme = {
-                        wave = {},
-                        wave = {},
+                        dragon = {},
+                        dragon = {},
                         all = {
                             ui = {
                                 bg_gutter = "none",
@@ -54,9 +54,9 @@ return {
                         TelescopePreviewBorder = { fg = theme.ui.special },
                     }
                 end,
-                theme = "wave",    -- Load "wave" theme when 'background' option is not set
+                theme = "dragon",    -- Load "dragon" theme when 'background' option is not set
                 background = {     -- map the value of 'background' option to a theme
-                    dark = "wave", -- try "wave" !
+                    dark = "dragon", -- try "dragon" !
                 },
             })
             vim.cmd("colorscheme kanagawa")
