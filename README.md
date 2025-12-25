@@ -5,4 +5,5 @@
 - alacritty v0.13.2
 - tmux v3.4
 - luarocks
+- ripgrep
 - CaskaydiaMono Nerd Font
