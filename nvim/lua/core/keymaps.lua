@@ -8,6 +8,10 @@ vim.g.maplocalleader = " "
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down and auto-indent" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up and auto-indent" })
 
+-- Moving up and down in Wrapped lines
+vim.keymap.set({'n', 'v'}, '<C-j>', 'gj', { noremap = true, silent = true })
+vim.keymap.set({'n', 'v'}, '<C-k>', 'gk', { noremap = true, silent = true })
+
 -- Moving up and down and cursor centered
 vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half-page down and center cursor" })
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half-page up and center cursor" })
@@ -25,6 +29,8 @@ vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste over selection withou
 vim.keymap.set("v", "p", '"_dp', { desc = "Paste without overwriting register" })
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete into void register (don't copy)" })
 vim.keymap.set("n", "x", '"_x', { desc = "Delete character into void register" })
+vim.keymap.set({ "n", "v" }, "c", '"_c', { desc = "Change text without copying" })
+vim.keymap.set({ "n", "v" }, "C", '"_C', { desc = "Change line without copying" })
 
 -- Navigation & Utilities
 vim.keymap.set("i", "<C-c>", "<Esc>", { desc = "Exit insert mode" })
@@ -58,10 +64,10 @@ vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make split equal size"})
 vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current Split"})
 
 -- Move between splits
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left split" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right split" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to bottom split" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to top split" })
+vim.keymap.set("n", "<leader>h", "<C-w>h", { desc = "Move to left split" })
+vim.keymap.set("n", "<leader>l", "<C-w>l", { desc = "Move to right split" })
+vim.keymap.set("n", "<leader>j", "<C-w>j", { desc = "Move to bottom split" })
+vim.keymap.set("n", "<leader>k", "<C-w>k", { desc = "Move to top split" })
 
 -- Copy filepath to the clipboard
 vim.keymap.set("n", "<leader>fp", function()
