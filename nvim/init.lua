@@ -1,2 +1,4 @@
-# custom nvim config
+-- custom nvim config
 require("core")
+
+require("lazy-config")
