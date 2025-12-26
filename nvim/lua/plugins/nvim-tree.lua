@@ -2,31 +2,29 @@ return {
     "nvim-tree/nvim-tree.lua",
     version = "*",
     lazy = false,
-    dependencies = {
-        "nvim-tree/nvim-web-devicons",
-    },
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
         local nvimtree = require("nvim-tree")
         local api = require("nvim-tree.api")
 
-        -- 1. Focus logic: Jump to tree if in code, jump to code if in tree
+        -- Focus logic
         vim.keymap.set("n", "<leader>e", function()
             if vim.bo.filetype == "NvimTree" then
-                vim.cmd("wincmd p") -- "p" is for previous window
+                vim.cmd("wincmd p")
             else
                 api.tree.focus()
             end
         end, { desc = "Jump between Tree and Code" })
 
-        -- 2. Open tree on startup
-        vim.api.nvim_create_autocmd({ "VimEnter" }, {
+        -- Open tree on startup AND on new tabs (Workspaces)
+        vim.api.nvim_create_autocmd({ "VimEnter", "TabNewEntered" }, {
             callback = function()
                 api.tree.open()
-                vim.cmd("wincmd p") -- Jump back to the main editor window so you start typing in code
+                vim.cmd("wincmd p") 
             end,
         })
 
-        -- Quit from NVIM if the only buffer that is open is the tree
+        -- Auto-quit if Tree is the last window
         vim.api.nvim_create_autocmd("BufEnter", {
             nested = true,
             callback = function()
@@ -36,7 +34,6 @@ return {
             end,
         })
 
-        -- 3. Standard Setup
         nvimtree.setup({
             sort = { sorter = "case_sensitive" },
             view = {
@@ -46,15 +43,33 @@ return {
             renderer = {
                 group_empty = true,
                 highlight_git = true,
+                indent_markers = {
+                    enable = true,
+                    icons = { corner = "└", edge = "│", item = "│", bottom = "─", none = " ", },
+                },
+                icons = {
+                    glyphs = {
+                        git = {
+                            unstaged = "✗",
+                            staged = "✓",
+                            unmerged = "",
+                            renamed = "➜",
+                            untracked = "★",
+                            deleted = "",
+                            ignored = "◌",
+                        },
+                    },
+                },
             },
             update_focused_file = {
                 enable = true,
                 update_root = true,
             },
-            filters = {
-                dotfiles = true,
-            },
+            filters = { dotfiles = false },
             hijack_netrw = true,
         })
+
+        vim.api.nvim_set_hl(0, "NvimTreeIndentMarker", { fg = "#1c3f6e" }) -- Deep blue lines
+        vim.api.nvim_set_hl(0, "NvimTreeOpenedFolderName", { fg = "#00f5d4", bold = true }) -- Glowing green
     end,
 }
