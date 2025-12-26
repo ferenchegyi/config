@@ -25,27 +25,36 @@ save_to_clipboard = true
 [shell]
 program = "/bin/bash"
 
-# A clean, modern "Tokyo Night" inspired color scheme
 [colors.primary]
-background = "#1a1b26"
-foreground = "#a9b1d6"
+# A deep, saturated midnight navy (The shadows of Pandora)
+background = "#0a111f"
+# A soft, glowing off-white (Na'vi bioluminescent dots)
+foreground = "#d0e1f9"
 
 [colors.normal]
-black =   "#32344a"
-red =     "#f7768e"
-green =   "#9ece6a"
-yellow =  "#e0af68"
-blue =    "#7aa2f7"
-magenta = "#bb9af7"
-cyan =    "#7dcfff"
-white =   "#a9b1d6"
+black   = "#162030"
+red     = "#ff4d6d" # Pandora's dangerous flora
+green   = "#00f5d4" # Glowing jungle plants
+yellow  = "#ffeead" # Soft bioluminescence
+blue    = "#0077b6" # Na'vi skin tone
+magenta = "#9b5de5" # Exotic forest flowers
+cyan    = "#00b4d8" # The primary "Way of Water" teal
+white   = "#caf0f8"
 
 [colors.bright]
-black =   "#444b6a"
-red =     "#ff007c"
-green =   "#b9f27c"
-yellow =  "#ff9e64"
-blue =    "#7da6ff"
-magenta = "#bb9af7"
-cyan =    "#0db9d7"
-white =   "#acb0d0"
+black   = "#1e2a3d"
+red     = "#ff7096"
+green   = "#57ffca" # Intense "bioluminescent" green
+yellow  = "#fff4cc"
+blue    = "#0096c7"
+magenta = "#b79ced"
+cyan    = "#48cae4" # Bright water glow
+white   = "#ade8f4"
+
+[colors.cursor]
+cursor = "#00f5d4"
+text = "#0a111f"
+
+[colors.selection]
+background = "#1c3f6e"
+foreground = "CellForeground"
