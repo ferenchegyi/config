@@ -7,3 +7,4 @@
 - luarocks
 - ripgrep
 - CaskaydiaMono Nerd Font
+- LazyGit
