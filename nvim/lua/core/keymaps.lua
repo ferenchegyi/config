@@ -8,6 +8,9 @@ vim.g.maplocalleader = " "
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down and auto-indent" })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up and auto-indent" })
 
+-- This disables Shift + J
+vim.keymap.set("n", "J", "<nop>", { desc = "Disable line joining" })
+
 -- Moving up and down in Wrapped lines
 vim.keymap.set({'n', 'v'}, '<C-j>', 'gj', { noremap = true, silent = true })
 vim.keymap.set({'n', 'v'}, '<C-k>', 'gk', { noremap = true, silent = true })
