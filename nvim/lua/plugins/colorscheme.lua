@@ -1,65 +1,45 @@
 return {
-    -- NOTE: Kanagwa
     {
-        "rebelot/kanagawa.nvim",
+        "bluz71/vim-nightfly-colors",
+        name = "nightfly",
+        lazy = false,
+        priority = 1000,
         config = function()
-            require('kanagawa').setup({
-                compile = false,  -- enable compiling the colorscheme
-                undercurl = true, -- enable undercurls
-                commentStyle = { italic = true },
-                functionStyle = {},
-                keywordStyle = { italic = false },
-                statementStyle = { bold = true },
-                typeStyle = {},
-                transparent = false,    -- do not set background color
-                dimInactive = false,   -- dim inactive window `:h hl-NormalNC`
-                terminalColors = true, -- define vim.g.terminal_color_{0,17}
-                colors = {             -- add/modify theme and palette colors
-                    palette = {},
-                    theme = {
-                        dragon = {},
-                        dragon = {},
-                        all = {
-                            ui = {
-                                bg_gutter = "none",
-                                border = "rounded"
-                            }
-                        }
-                    },
-                },
-                overrides = function(colors) -- add/modify highlights
-                    local theme = colors.theme
-                    return {
-                        NormalFloat = { bg = "none" },
-                        FloatBorder = { bg = "none" },
-                        FloatTitle = { bg = "none" },
-                        Pmenu = { fg = theme.ui.shade0, bg = "NONE", blend = vim.o.pumblend }, -- add `blend = vim.o.pumblend` to enable transparency
-                        PmenuSel = { fg = "NONE", bg = theme.ui.bg_p2 },
-                        PmenuSbar = { bg = theme.ui.bg_m1 },
-                        PmenuThumb = { bg = theme.ui.bg_p2 },
+            -- 1. Nightfly Core Options
+            vim.g.nightflyTransparent = false
+            vim.g.nightflyUndercurls = true
+            vim.g.nightflyWinSeparator = 2 -- Use thick separators for better definition
 
-                        -- Save an hlgroup with dark background and dimmed foreground
-                        -- so that you can use it where your still want darker windows.
-                        -- E.g.: autocmd TermOpen * setlocal winhighlight=Normal:NormalDark
-                        NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+            -- 2. Apply the colorscheme
+            vim.cmd([[colorscheme nightfly]])
 
-                        -- Popular plugins that open floats will link to NormalFloat by default;
-                        -- set their background accordingly if you wish to keep them dark and borderless
-                        LazyNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-                        MasonNormal = { bg = theme.ui.bg_m3, fg = theme.ui.fg_dim },
-                        TelescopeTitle = { fg = theme.ui.special, bold = true },
-                        TelescopePromptBorder = { fg = theme.ui.special, },
-                        TelescopeResultsNormal = { fg = theme.ui.fg_dim, },
-                        TelescopeResultsBorder = { fg = theme.ui.special, },
-                        TelescopePreviewBorder = { fg = theme.ui.special },
-                    }
-                end,
-                theme = "dragon",    -- Load "dragon" theme when 'background' option is not set
-                background = {     -- map the value of 'background' option to a theme
-                    dark = "dragon", -- try "dragon" !
-                },
-            })
-            vim.cmd("colorscheme kanagawa")
+            -- 3. High-Contrast "Avatar" Overrides
+            -- These specifically fix the "low contrast" issues you saw in your screenshots
+            local hl = vim.api.nvim_set_hl
+            
+            -- Fix Bufferline: Make the selected tab "glow" emerald/cyan
+            hl(0, "BufferLineIndicatorSelected", { fg = "#00f5d4" }) 
+            hl(0, "BufferLineBufferSelected", { fg = "#e0f7fa", bold = true })
+            
+            -- Fix Lazygit & Floating Windows: Give them a sharp bioluminescent border
+            hl(0, "NormalFloat", { bg = "#0a111f" }) -- Ensure float bg matches your Alacritty
+            hl(0, "FloatBorder", { fg = "#00b4d8" }) 
+            
+            -- Fix Telescope: Saturated Cyan highlights
+            hl(0, "TelescopeBorder", { fg = "#00b4d8" })
+            hl(0, "TelescopePromptPrefix", { fg = "#00f5d4" })
+            hl(0, "TelescopeSelection", { bg = "#1c3f6e", fg = "#ffffff" })
+
+            -- Fix General UI: Make the line number and cursorline more visible
+            hl(0, "CursorLine", { bg = "#162030" })
+            hl(0, "CursorLineNr", { fg = "#00f5d4", bold = true })
+            
+            -- Terminal Colors: This is what Lazygit uses for its UI
+            -- We force the terminal "blue" and "cyan" to be the saturated Avatar versions
+            vim.g.terminal_color_4 = "#0077b6" -- Normal Blue
+            vim.g.terminal_color_6 = "#00b4d8" -- Normal Cyan
+            vim.g.terminal_color_12 = "#48cae4" -- Bright Cyan (Borders in Lazygit)
+            vim.g.terminal_color_14 = "#00f5d4" -- Bright Emerald (Selections)
         end
     },
 }

@@ -69,6 +69,17 @@ vim.keymap.set("n", "<leader>l", "<C-w>l", { desc = "Move to right split" })
 vim.keymap.set("n", "<leader>j", "<C-w>j", { desc = "Move to bottom split" })
 vim.keymap.set("n", "<leader>k", "<C-w>k", { desc = "Move to top split" })
 
+-- Bufferline management
+vim.keymap.set("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Next file" })
+vim.keymap.set("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Prev file" })
+vim.keymap.set("n", "<leader>x", function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  -- Switch to previous buffer if it exists, otherwise create new empty one
+  vim.cmd("bprevious")
+  -- Delete the original buffer
+  vim.cmd("bdelete " .. bufnr)
+end, { desc = "Close buffer without closing window" })
+
 -- Copy filepath to the clipboard
 vim.keymap.set("n", "<leader>fp", function()
     local filePath = vim.fn.expand("%:~") -- Gets the filepath relative to the home directory
