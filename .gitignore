@@ -1,0 +1,10 @@
+# Ignore everything in the root
+/*
+
+# Allow the directories themselves
+!/nvim/
+!/alacritty/
+!/tmux/
+
+# Don't ignore gitignore
+!.gitignore
