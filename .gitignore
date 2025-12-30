@@ -5,6 +5,7 @@
 !/nvim/
 !/alacritty/
 !/tmux/
+!custom-bashrc.sh
 
 # Don't ignore gitignore
 !.gitignore

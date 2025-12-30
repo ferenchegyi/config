@@ -32,14 +32,14 @@ background = "#0a111f"
 foreground = "#d0e1f9"
 
 [colors.normal]
-black   = "#162030"
-red     = "#ff4d6d" # Pandora's dangerous flora
 green   = "#00f5d4" # Glowing jungle plants
 yellow  = "#ffeead" # Soft bioluminescence
 blue    = "#0077b6" # Na'vi skin tone
 magenta = "#9b5de5" # Exotic forest flowers
 cyan    = "#00b4d8" # The primary "Way of Water" teal
 white   = "#caf0f8"
+black   = "#455a73" 
+red     = "#ff4d6d"
 
 [colors.bright]
 black   = "#1e2a3d"
